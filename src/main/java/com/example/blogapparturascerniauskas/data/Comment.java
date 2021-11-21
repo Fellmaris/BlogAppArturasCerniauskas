@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Setter
 @Getter
-public class Comment extends User{
+public class Comment extends Blog {
 
     @Id
     @NotBlank
