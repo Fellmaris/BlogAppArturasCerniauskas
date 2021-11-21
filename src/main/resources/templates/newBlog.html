@@ -14,17 +14,17 @@
                 <label class="m-1" th:text="#{create.new.blog.name}"></label>
             </td>
             <td>
-                <input class="m-1"  type="text" th:placeholder="#{create.new.blog.name.placeholder}" th:field="*{blog.name}">
+                <input class="m-1"  type="text" th:placeholder="#{create.new.blog.name.placeholder}" th:field="*{blog.name}" value="${blog.name}">
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <textarea style="resize: none" class="m-2" rows="20" cols="39" th:placeholder="#{create.new.blog.body.placeholder}" th:field="*{blog.body}"></textarea>
+                <textarea style="resize: none" class="m-2" rows="20" cols="39" th:placeholder="#{create.new.blog.body.placeholder}" th:field="*{blog.body}" th:text="${blog.body}"></textarea>
             </td>
         </tr>
         <tr>
             <td></td>
-            <td> <button type="button" class="btn btn-outline-primary float-end m-1" th:text="#{create.new.blog.create.button}"></button> </td>
+            <td> <button type="submit" class="btn btn-outline-primary float-end m-1" th:text="#{create.new.blog.create.button}"></button> </td>
         </tr>
     </table>
 </div>

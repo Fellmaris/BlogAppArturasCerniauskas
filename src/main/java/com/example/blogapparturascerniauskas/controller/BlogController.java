@@ -6,9 +6,7 @@ import com.example.blogapparturascerniauskas.service.MessageService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -30,7 +28,7 @@ public class BlogController {
         return "blogs";
 }
 
-@GetMapping ("/create")
+    @GetMapping ("/create")
     public String createNewBlog(Model model){
     model.addAttribute("blog", new Blog());
         return "newBlog";
@@ -39,6 +37,19 @@ public class BlogController {
     public String deleteProduct(@PathVariable UUID id) {
         blogService.deleteBlog(id);
 
+        return "redirect:/blogs";
+    }
+
+    @GetMapping("/update")
+    public String loadUpdateForm(@RequestParam UUID id, Model model){
+        model.addAttribute("blog", blogService.getBlog(id));
+
+        return "newBlog";
+    }
+
+    @PostMapping("/update")
+    public String updateBlog (Blog blog){
+        blogService.updateBlog(blog);
         return "redirect:/blogs";
     }
 }

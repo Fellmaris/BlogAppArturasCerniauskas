@@ -1,6 +1,7 @@
 package com.example.blogapparturascerniauskas.service;
 
 import com.example.blogapparturascerniauskas.data.Blog;
+import com.example.blogapparturascerniauskas.exception.BlogNotExistException;
 import com.example.blogapparturascerniauskas.repository.BlogRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,5 +25,13 @@ public class BlogService {
 
     public void deleteBlog (UUID id){
         blogRepository.deleteById(id);
+    }
+
+    public void updateBlog(Blog blog){
+        blogRepository.save(blog);
+    }
+
+    public Blog getBlog (UUID id){
+        return blogRepository.findById(id).orElseThrow(() -> new BlogNotExistException(id));
     }
 }
