@@ -1,6 +1,7 @@
 package com.example.blogapparturascerniauskas.controller;
 
 import com.example.blogapparturascerniauskas.data.Blog;
+import com.example.blogapparturascerniauskas.data.Comment;
 import com.example.blogapparturascerniauskas.service.BlogService;
 import com.example.blogapparturascerniauskas.service.MessageService;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,7 @@ public class BlogController {
 
     @GetMapping
     public String loadBlogs (Model model, Pageable pageable){
+        model.addAttribute("newComment", new Comment());
         model.addAttribute("pageOfBlogs", blogService.getBlogs(pageable));
         return "blogs";
 }
