@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
@@ -22,7 +23,7 @@ public class BlogController {
         this.messageService = messageService;
     }
 
-@GetMapping
+    @GetMapping
     public String loadBlogs (Model model, Pageable pageable){
         model.addAttribute("pageOfBlogs", blogService.getBlogs(pageable));
         return "blogs";
@@ -33,6 +34,13 @@ public class BlogController {
     model.addAttribute("blog", new Blog());
         return "newBlog";
 }
+
+    @PostMapping("/create")
+    public String createBlog(@Valid Blog blog){
+        blogService.saveBlog(blog);
+        return "redirect:/blogs/create";
+    }
+
     @GetMapping("/{id}/delete")
     public String deleteProduct(@PathVariable UUID id) {
         blogService.deleteBlog(id);

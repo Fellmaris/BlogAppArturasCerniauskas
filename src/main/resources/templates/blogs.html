@@ -14,8 +14,7 @@
             <table class="w-50 p-3" th:align="center">
                     <tbody th:each="blog: ${pageOfBlogs.content}">
                     <tr>
-                        <th th:text="${blog.name}"></th></t>
-
+                        <th><span  th:text="${blog.name}"></span><span class="float-end"  th:text="${blog.creationdate}"></span></th>
                     </tr>
                     <tr>
                         <td th:text="${blog.body}"></td>
@@ -31,8 +30,10 @@
                         <div th:text="#{blogs.comment}"></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td th:text="${blog.comments}"></td>
+                    <div th:each="comment: ${blog.comments}">
+                    <tr th:if="${comment.content}">
+                        <td th:text="${comment.username}"></td>
+                        <td th:text="${comment.comment}"></td>
                     <tr>
                         <td class="float-end">
                             <button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
@@ -40,6 +41,7 @@
                         </td>
                     </tr>
                     </tr>
+                    </div>
                     <tr>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-outline-secondary" th:text="#{blog.comment.button}"></button>
