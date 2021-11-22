@@ -21,7 +21,7 @@ public class BlogService {
     }
 
     public Page<Blog> getBlogs (Pageable pageable) {
-        return blogRepository.findAll(pageable);
+        return blogRepository.findByOrderByCreationdateDesc(pageable);
     }
 
     public void deleteBlog (UUID id){
@@ -39,4 +39,5 @@ public class BlogService {
     public void saveBlog (Blog blog){
         blogRepository.save(blog);
     }
+
 }
