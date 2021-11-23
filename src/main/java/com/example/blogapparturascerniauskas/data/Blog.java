@@ -31,11 +31,11 @@ public class Blog extends User{
     @Column (columnDefinition = "text")
     private String body;
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Comment> comments;
+    private List<Comment> comments;
 
     public void addComment (Comment comment) {
        if(comments == null) {
-            comments = new HashSet<>();
+            comments = new ArrayList<>();
         }
         comments.add(comment);
     }
