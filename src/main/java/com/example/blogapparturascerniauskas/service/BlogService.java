@@ -24,6 +24,10 @@ public class BlogService {
         return blogRepository.findByOrderByCreationdateDesc(pageable);
     }
 
+    public Blog getBlog (UUID id){
+        return blogRepository.findById(id).orElseThrow(() -> new BlogNotExistException(id));
+    }
+
     public void deleteBlog (UUID id){
         blogRepository.deleteById(id);
     }
@@ -32,12 +36,5 @@ public class BlogService {
         blogRepository.save(blog);
     }
 
-    public Blog getBlog (UUID id){
-        return blogRepository.findById(id).orElseThrow(() -> new BlogNotExistException(id));
-    }
-
-    public void saveBlog (Blog blog){
-        blogRepository.save(blog);
-    }
 
 }

@@ -26,10 +26,21 @@ public class BlogController {
 
     @GetMapping
     public String loadBlogs (Model model, Pageable pageable){
-        model.addAttribute("newComment", new Comment());
+
         model.addAttribute("pageOfBlogs", blogService.getBlogs(pageable));
+        model.addAttribute("newComment", new Comment());
+
         return "blogs";
 }
+
+    @PostMapping
+    public String saveComment (@RequestParam (name = "id") UUID id, @Valid Comment comment){
+        Blog blog = blogService.getBlog(id);
+        comment.setBlog(blog);
+        blog.addComment(comment);
+        blogService.updateBlog(blog);
+        return "redirect:/blogs";
+    }
 
     @GetMapping ("/create")
     public String createNewBlog(Model model){
@@ -39,7 +50,7 @@ public class BlogController {
 
     @PostMapping("/create")
     public String createBlog(@Valid Blog blog){
-        blogService.saveBlog(blog);
+        blogService.updateBlog(blog);
         return "redirect:/blogs/create";
     }
 

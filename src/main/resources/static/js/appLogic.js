@@ -2,9 +2,16 @@ $(window.onload = function(){
 
 });
 
-function showCommentArea(blogId) {
-    var x = document.getElementById(blogId);
-    if (x.style.display === "none") {
-        x.style.display = "block";
+function showCommentArea(blogId, buttonId, formId) {
+    var blogCommentArea = document.getElementById(blogId);
+    var blogCommentButton = document.getElementById(buttonId)
+    var commentForm = document.getElementById(formId)
+    if (blogCommentArea.style.display === "none") {
+        blogCommentArea.style.display = "block";
+        blogCommentButton.className = "btn btn-outline-primary";
+        commentForm.setAttribute("method", "post");
+    } else {
+        blogCommentButton.setAttribute("type", "submit");
+        // blogCommentButton.setAttribute("th:href", "@{/blogs(id=${blog.id})}");
     }
 }
