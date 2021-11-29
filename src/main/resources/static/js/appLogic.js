@@ -12,6 +12,5 @@ function showCommentArea(blogId, buttonId, formId) {
         commentForm.setAttribute("method", "post");
     } else {
         blogCommentButton.setAttribute("type", "submit");
-        // blogCommentButton.setAttribute("th:href", "@{/blogs(id=${blog.id})}");
     }
 }

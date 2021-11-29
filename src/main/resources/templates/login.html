@@ -7,13 +7,14 @@
     </head>
     <body>
     <div class="position-absolute top-50 start-50 translate-middle">
+        <form method="post" th:action="@{/customLogin}">
         <table>
             <tr>
                 <td>
                     <label class="m-1" th:text="#{logIn.username}"></label>
                 </td>
                 <td>
-                    <input class="m-1"  type="text" th:placeholder="#{logIn.username.placeholder}" th:field="*{user.username}">
+                    <input class="m-1"  type="text" th:placeholder="#{logIn.username.placeholder}" name="customUsername">
                 </td>
             </tr>
         <tr>
@@ -21,17 +22,17 @@
                 <label class="m-1 float-end"  th:text="#{logIn.password}"></label>
             </td>
             <td>
-                <input class="m-1"  type="password" th:placeholder="#{logIn.password.placeholder}" th:field="*{user.password}">
+                <input class="m-1"  type="password" th:placeholder="#{logIn.password.placeholder}" name="customPassword">
             </td>
             <tr>
                 <td></td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary float-end m-1" th:text="#{logIn.button}"></button>
-
+                    <button type="submit" class="btn btn-outline-primary float-end m-1" th:text="#{logIn.button}"></button>
                 </td>
             </tr>
         </tr>
         </table>
+        </form>
     </div>
     </body>
 </html>

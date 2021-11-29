@@ -1,5 +1,6 @@
 package com.example.blogapparturascerniauskas.data;
 
+import com.example.blogapparturascerniauskas.misc.CurrentTime;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Setter
 @Getter
 @Table(name = "comments")
-public class Comment extends User {
+public class Comment{
     @Id
     @GeneratedValue
     @Column(columnDefinition = "VARCHAR(36)", updatable = false)
@@ -23,7 +24,9 @@ public class Comment extends User {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name= "blog_id")
     private Blog blog;
-    private Date creationDate = java.util.Calendar.getInstance().getTime();
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private User user;
+    private String creationDate = CurrentTime.getTime();
     private String comment;
 
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,35 +16,55 @@
             <table class="w-50 p-3" th:align="center">
                     <tbody th:each="blog: ${pageOfBlogs.content}">
                     <tr>
-                        <th><span  th:text="${blog.name}"></span><span class="float-end"  th:text="${blog.creationdate}"></span></th>
-                    </tr>
-                    <tr>
-                        <td th:text="${blog.body}"></td>
-                    </tr>
-                    <tr>
-                        <td class="float-end">
-                        <a  th:href="@{/blogs/update(id=${blog.id})}" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></a>
-                        <a  th:href="@{/blogs/{id}/delete(id=${blog.id})}"  class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
+                        <th class="pt-5">
+                            <span  th:text="${blog.name}"></span>
+                            <span class="float-end"  th:text="${blog.creationdate}"></span>
+
+                            <span sec:authorize="hasRole('ADMIN')">
+                                <a  th:href="@{/blogs/{id}/delete(id=${blog.id})}"  class="btn btn-outline-danger rounded-circle btn-sm float-end m-1"><i class="bi bi-trash"></i></a>
+                            </span>
+                            <span  sec:authorize="hasRole('ADMIN')">
+                                <a  th:href="@{/blogs/update(id=${blog.id})}" class="btn btn-outline-primary rounded-circle btn-sm float-end m-1" ><i class="bi bi-pencil"></i></a>
+                            </span>
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <td th:text="${blog.body}"></td>
+                        </tr>
+
+
+
                     <tr>
                         <td>
                         <div th:text="#{blogs.comment}"></div>
                         </td>
                     </tr>
                     <div th:unless="${#lists.isEmpty(blog.comments)}" th:each="comment: ${blog.comments}">
+                        <div>
                     <tr>
-                        <td th:text="${comment.username}"></td>
-                        <td th:text="${comment.comment}"></td>
-                    <tr>
-                        <td class="float-end">
-                            <button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                        <td>
+                        <span class="fw-bold" th:text="${comment.username}"></span>
+                        <span class="float-end">
+
+                            <span>
+                            <button type="button" class="btn btn-outline-primary rounded-circle btn-sm m-1"><i class="bi bi-pencil"></i></button>
+                            </span>
+                            <span>
+                                <button type="button" class="btn btn-outline-danger rounded-circle btn-sm m-1"><i class="bi bi-trash"></i></button>
+                            </span>
+                        </span>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="pb-3">
+                        <span th:text="${comment.comment}" class="text-break"></span>
+                        <span class="float-end" th:text="${comment.creationDate}"></span>
+                        </td>
                     </tr>
+                        </div>
                     </div>
-                    <form th:id="'form' + ${blog.id}" th:action="@{/blogs(id=${blog.id})}">
+                    <form th:id="'form' + ${blog.id}" th:action="@{/public/blogs(id=${blog.id})}">
                     <tr>
                         <td class="d-flex justify-content-center">
                             <textarea th:id="${blog.id}"
@@ -58,7 +79,8 @@
                     </tr>
                     <tr>
                         <td class="d-flex justify-content-center">
-                            <button th:id="'comment' + ${blog.id}"
+                            <button sec:authorize="!isAnonymous()"
+                                th:id="'comment' + ${blog.id}"
                                 th:onclick="showCommentArea ([[${blog.id}]],[['comment' + ${blog.id}]], [['form' + ${blog.id}]])"
                                 type="button"
                                 class="btn btn-outline-secondary"
