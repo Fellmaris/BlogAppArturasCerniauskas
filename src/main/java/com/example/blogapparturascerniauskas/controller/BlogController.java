@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/public/blogs")
 public class BlogController {
 
     private final BlogService blogService;
@@ -20,7 +21,7 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping("/public/blogs")
+    @GetMapping
     public String loadBlogs (Model model, Pageable pageable){
 
         model.addAttribute("pageOfBlogs", blogService.getBlogs(pageable));
@@ -29,7 +30,7 @@ public class BlogController {
         return "blogs";
 }
 
-    @PostMapping("/public/blogs")
+    @PostMapping
     public String saveComment (@RequestParam (name = "id") UUID id, @Valid Comment comment){
         Blog blog = blogService.getBlog(id);
         comment.setBlog(blog);

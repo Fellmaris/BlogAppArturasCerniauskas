@@ -1,6 +1,5 @@
 package com.example.blogapparturascerniauskas.data;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,6 @@ import java.util.UUID;
 @Setter
 @Table(name = "users")
 @NoArgsConstructor
-@AllArgsConstructor
 public class User implements UserDetails {
     @Id
     @GeneratedValue
@@ -30,6 +28,12 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+
+    public User(String username, String password, Set<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
