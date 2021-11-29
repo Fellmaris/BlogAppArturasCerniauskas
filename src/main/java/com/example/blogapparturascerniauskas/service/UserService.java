@@ -1,5 +1,6 @@
 package com.example.blogapparturascerniauskas.service;
 
+import com.example.blogapparturascerniauskas.data.User;
 import com.example.blogapparturascerniauskas.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,5 +21,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User %s does not exist", username)));
     }
+
 
 }
