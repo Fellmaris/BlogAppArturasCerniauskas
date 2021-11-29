@@ -60,6 +60,6 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/customLogin").setViewName("login");
-        registry.addRedirectViewController("/", "/public/products");
+        registry.addRedirectViewController("/", "/public/blogs");
     }
 }

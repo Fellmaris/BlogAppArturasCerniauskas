@@ -7,8 +7,8 @@
     </head>
     <body>
     <div class="position-absolute top-50 start-50 translate-middle">
-        <form method="post" th:action="@{/customLogin}">
         <table>
+            <form method="post" th:action="@{/customLogin}">
             <tr>
                 <td>
                     <label class="m-1" th:text="#{logIn.username}"></label>
@@ -31,8 +31,8 @@
                 </td>
             </tr>
         </tr>
-        </table>
         </form>
+        </table>
     </div>
     </body>
 </html>

@@ -10,8 +10,9 @@ VALUES ('a5685360-e619-4b54-a26a-a1ec4ca53e45', DATE('2020-05-16'), 'Lorem', 'Lo
        ('cbdee4f9-5763-4afc-85ed-98b2fdefb35d', DATE('2020-05-28'), 'ut labore', 'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
 INSERT INTO users(id, username, password) VALUES
-      ('c2aa5f20-2441-40f8-8cce-d31dbd17bc84', 'user',  '{bcrypt}$2a$10$qC6EOx5rm8Z5HS97iwIpeuCcN.f3mfZ24fynPePPzzXwIqhA8jg4S'), /*pass->user*/
-      ('bd8968db-ad2a-4dd0-a0ab-7eebcc05427e', 'admin', '{bcrypt}$2a$10$AxFOVIbpL9SJ2TxSUcHHuOPvKxNtr90vqfXvZEM6HrwxjMlHCfljq'); /*pass->admin*/
+      ('c2aa5f20-2441-40f8-8cce-d31dbd17bc84', 'user',  '{bcrypt}$2a$10$amFqbdk0pe7wqp9ufEcHOu9t48Sp9NptByAqW0Ak5dTV9JHp/dapm'), /*pass->user*/
+      ('bd8968db-ad2a-4dd0-a0ab-7eebcc05427e', 'admin', '{bcrypt}$2a$10$/kcDI78qGnRwg0R1ullGCerGpKuH1/7kxYHIYTrPa8GkLnlIZBW0K'); /*pass->admin*/
+
 
 INSERT INTO roles(id, name) VALUES
      ('60dbb7bb-99a0-42eb-a837-8be6b697c074', 'USER'),

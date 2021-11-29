@@ -3,7 +3,6 @@ package com.example.blogapparturascerniauskas.data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -12,7 +11,7 @@ import java.util.UUID;
 @Table(name = "roles")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Role implements GrantedAuthority {
+public class Role /*implements GrantedAuthority*/ {
     @Id
     @GeneratedValue
     @Column(columnDefinition = "VARCHAR(36)", updatable = false)
@@ -20,8 +19,8 @@ public class Role implements GrantedAuthority {
     private UUID id;
     private String name;
 
-    @Override
-    public String getAuthority() {
-        return "ROLE_" + name;
-    }
+//    @Override
+//    public String getAuthority() {
+//        return "ROLE_" + name;
+//    }
 }
